@@ -23,7 +23,7 @@ public class MultipleElementsExampleTest {
     // Set up method
     @BeforeClass
     public void setUp() throws MalformedURLException {
-        // Desired Capabilities
+    
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("android");
         options.setAutomationName("UiAutomator2");
@@ -34,22 +34,19 @@ public class MultipleElementsExampleTest {
         // Server URL
         URL serverURL = new URL("http://localhost:4723/wd/hub");
 
-        // Driver initialization
+        
         driver = new AndroidDriver(serverURL, options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        // Open the page in browser
-        driver.get("https://www.training-support.net/selenium/target-practice");
+        driver.get("https://training-support.net/selenium/TargetPractice");
     }
 
     @Test
     public void listElements() {
-        // Wait for elements to load
+        
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
                 AppiumBy.className("android.webkit.WebView")
         ));
-
-        // Find all text elements on the page
+    
         List<WebElement> textItems = driver.findElements(
                 AppiumBy.xpath("//android.view.View/android.widget.Button")
         );
@@ -57,6 +54,9 @@ public class MultipleElementsExampleTest {
         for (WebElement textItem : textItems) {
             System.out.println(textItem.getText());
         }
+        driver.findElement(AppiumBy.accessibilityId("Button")).click();
+        
+
     }
 
     @AfterClass
